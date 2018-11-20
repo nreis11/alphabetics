@@ -1,0 +1,19 @@
+.active {
+  font-weight: bold;
+}
+
+span {
+  padding: 5px;
+}
+
+.letter-bar-container {
+  font-weight: bold;
+  display: flex;
+  justify-content: space-evenly;
+  height: 50px;
+  width: 75%;
+  margin: 0 auto;
+  border: 5px solid gold;
+  background: black;
+  color: gold;
+}
