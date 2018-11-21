@@ -21,8 +21,7 @@ class Game extends React.PureComponent {
       wordList: [],
       currIdx: 0,
       isGameOn: false,
-      timeLeft: 60,
-      correct: []
+      timeLeft: 60
     };
 
     this.reset = this.reset.bind(this);
@@ -38,13 +37,16 @@ class Game extends React.PureComponent {
   }
 
   handleKeyDown = e => {
-    const { isGameOn, currIdx, correct } = this.state;
+    const { isGameOn, currIdx, wordList } = this.state;
     if (isGameOn) {
       if (e.keyCode === 32) {
         // Correct
-        const newCorrect = correct.slice().concat([currIdx]);
+        const currWord = wordList[currIdx];
+        currWord.isRight = true;
+        const newWordList = wordList.slice();
+        newWordList[currIdx] = currWord;
         this.setState({
-          correct: newCorrect
+          wordList: newWordList
         });
         this.nextWord();
       } else if (e.keyCode === 18) {
@@ -60,9 +62,10 @@ class Game extends React.PureComponent {
     const wordList = wordVault
       .slice(randomIdx, randomIdx + 10)
       .map(letterArr => {
-        return letterArr[
+        const word = letterArr[
           Math.floor(Math.random() * letterArr.length)
         ].toUpperCase();
+        return { value: word, isRight: false };
       });
     this.setState({
       wordList
@@ -115,18 +118,22 @@ class Game extends React.PureComponent {
   }
 
   render() {
-    const { wordList, currIdx, timeLeft, correct, isGameOn } = this.state;
-    const letters = wordList.map(word => word[0]);
-    const letter = letters[currIdx];
+    const { wordList, currIdx, timeLeft, isGameOn } = this.state;
+    console.log({ wordList: wordList });
+    if (wordList.length < 1) {
+      return <div />;
+    }
+
+    const letter = wordList[currIdx].value[0];
     return (
       <div className="game">
         <h1>Alphabetics</h1>
-        {isGameOn && <Speech text={letter}/>}
-        <LetterBar letters={letters} currIdx={currIdx} correct={correct} />
+        {isGameOn && <Speech text={letter} />}
+        <LetterBar wordList={wordList} currIdx={currIdx} />
         <Timer seconds={timeLeft < 10 ? "0" + timeLeft : timeLeft.toString()} />
         <WordTileContainer>
           {wordList.map((word, idx) => (
-            <WordTile key={word} word={idx <= currIdx ? word : null} />
+            <WordTile key={word.value} word={idx <= currIdx ? word : null} />
           ))}
         </WordTileContainer>
         <ButtonContainer>

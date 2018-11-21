@@ -1,14 +1,17 @@
 import React from "react";
 import "./LetterBar.css";
 
-export const LetterBar = ({ letters, currIdx, correct }) => {
+export const LetterBar = ({ wordList, currIdx }) => {
   return (
     <div className="letter-bar-container">
-      {letters.map((letter, idx) => (
-        <span className={idx === currIdx ? "active" : null} key={letter}>
-          {correct.includes(idx) ? null : letter}
-        </span>
-      ))}
+      {wordList.map((word, idx) => {
+        const letter = word.value[0];
+        return (
+          <span className={idx === currIdx ? "active" : null} key={letter}>
+            {word.isRight ? null : letter}
+          </span>
+        )
+      })}
     </div>
   );
 };

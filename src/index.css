@@ -4,85 +4,8 @@
 }
 
 body {
-  background-image: radial-gradient(
-      circle at 100% 150%,
-      #ffc600 24%,
-      #ceca00 25%,
-      #ceca00 28%,
-      #ffc600 29%,
-      #ffc600 36%,
-      #ceca00 36%,
-      #ceca00 40%,
-      transparent 40%,
-      transparent
-    ),
-    radial-gradient(
-      circle at 0 150%,
-      #ffc600 24%,
-      #ceca00 25%,
-      #ceca00 28%,
-      #ffc600 29%,
-      #ffc600 36%,
-      #ceca00 36%,
-      #ceca00 40%,
-      transparent 40%,
-      transparent
-    ),
-    radial-gradient(
-      circle at 50% 100%,
-      #ceca00 10%,
-      #ffc600 11%,
-      #ffc600 23%,
-      #ceca00 24%,
-      #ceca00 30%,
-      #ffc600 31%,
-      #ffc600 43%,
-      #ceca00 44%,
-      #ceca00 50%,
-      #ffc600 51%,
-      #ffc600 63%,
-      #ceca00 64%,
-      #ceca00 71%,
-      transparent 71%,
-      transparent
-    ),
-    radial-gradient(
-      circle at 100% 50%,
-      #ceca00 5%,
-      #ffc600 6%,
-      #ffc600 15%,
-      #ceca00 16%,
-      #ceca00 20%,
-      #ffc600 21%,
-      #ffc600 30%,
-      #ceca00 31%,
-      #ceca00 35%,
-      #ffc600 36%,
-      #ffc600 45%,
-      #ceca00 46%,
-      #ceca00 49%,
-      transparent 50%,
-      transparent
-    ),
-    radial-gradient(
-      circle at 0 50%,
-      #ceca00 5%,
-      #ffc600 6%,
-      #ffc600 15%,
-      #ceca00 16%,
-      #ceca00 20%,
-      #ffc600 21%,
-      #ffc600 30%,
-      #ceca00 31%,
-      #ceca00 35%,
-      #ffc600 36%,
-      #ffc600 45%,
-      #ceca00 46%,
-      #ceca00 49%,
-      transparent 50%,
-      transparent
-    );
-  background-size: 100px 50px;
+  background-image: url(./assets/background.jpg);
+  background-size: cover;
 }
 
 h1 {
@@ -101,6 +24,5 @@ h1 {
 }
 
 .container {
-  border: 4px solid black;
   border-radius: 5px;
 }

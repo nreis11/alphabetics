@@ -1,26 +1,14 @@
 .word-tile {
+  position: relative;
   height: 50px;
+  text-align: left;
+  padding-left: 5px;
+  font: bold 1.2em;
   line-height: 50px;
   width: 250px;
   border: 3px solid rgb(216, 216, 69);
   box-shadow: 2px 2px 2px 1px black;
   background: #fceabb; /* Old browsers */
-  background: -moz-linear-gradient(
-    left,
-    #fceabb 0%,
-    #fccd4d 13%,
-    #fccd4d 13%,
-    #f8b500 14%,
-    #fbdf93 100%
-  ); /* FF3.6-15 */
-  background: -webkit-linear-gradient(
-    left,
-    #fceabb 0%,
-    #fccd4d 13%,
-    #fccd4d 13%,
-    #f8b500 14%,
-    #fbdf93 100%
-  ); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(
     to right,
     #fceabb 0%,
@@ -29,4 +17,8 @@
     #f8b500 14%,
     #fbdf93 100%
   ); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.is-right {
+  border: 5px solid rgb(56, 192, 56);
 }
