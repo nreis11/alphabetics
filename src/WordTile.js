@@ -14,7 +14,7 @@ export const WordTile = ({ word }) => {
 };
 
 WordTile.propTypes = {
-  word: object.isRequired
+  word: object
 };
 
 WordTile.defaultProps = {
