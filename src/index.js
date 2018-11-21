@@ -12,6 +12,8 @@ import wordBank from "./words.json";
 
 import buzzer from "./sounds/buzzer-1.mp3";
 import "./index.css";
+import { MainContainer } from "./MainContainer";
+import { ControlContainer } from "./ControlContainer";
 
 class Game extends React.PureComponent {
   constructor(props) {
@@ -131,11 +133,15 @@ class Game extends React.PureComponent {
         {isGameOn && <Speech text={letter} />}
         <LetterBar wordList={wordList} currIdx={currIdx} />
         <Timer seconds={timeLeft < 10 ? "0" + timeLeft : timeLeft.toString()} />
-        <WordTileContainer>
-          {wordList.map((word, idx) => (
-            <WordTile key={word.value} word={idx <= currIdx ? word : null} />
-          ))}
-        </WordTileContainer>
+        <MainContainer>
+          <ControlContainer name="pass" handleClick={() => {}} />
+          <WordTileContainer>
+            {wordList.map((word, idx) => (
+              <WordTile key={word.value} word={idx <= currIdx ? word : null} />
+            ))}
+          </WordTileContainer>
+          <ControlContainer name="next" handleClick={() => {}} />
+        </MainContainer>
         <ButtonContainer>
           <button id="start-btn" onClick={this.startTimer}>
             Start
