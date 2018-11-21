@@ -1,6 +1,11 @@
 {
   "name": "alphabetics",
   "version": "1.0.0",
+  "engines": {
+    "npm": "6.4.1",
+    "node": "10.8.0"
+  },
+  "private": true,
   "description": "",
   "keywords": [],
   "main": "src/index.js",
