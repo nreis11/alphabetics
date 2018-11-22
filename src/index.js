@@ -24,7 +24,7 @@ class Game extends React.PureComponent {
       wordList: [],
       currIdx: 0,
       isGameOn: false,
-      timeLeft: 60
+      timeLeft: 2
     };
   }
 
@@ -78,10 +78,10 @@ class Game extends React.PureComponent {
   tick = () => {
     const { timeLeft } = this.state;
     if (timeLeft <= 0) {
+      const buzzerObj = document.getElementById("buzzer");
+      buzzerObj.src = buzzer;
+      buzzerObj.play();
       clearInterval(this.timer);
-      // Need to execute here to work on mobile browsers
-      const buzzer = document.getElementById("buzzer");
-      buzzer.play();
       this.setState({
         isGameOn: false
       });
@@ -93,8 +93,9 @@ class Game extends React.PureComponent {
   };
 
   startTimer = () => {
-    console.log(this);
     if (!this.timer) {
+      const buzzerObj = document.getElementById("buzzer");
+      buzzerObj.play();
       this.timer = setInterval(this.tick, 1000);
       this.setState({
         isGameOn: true
@@ -160,7 +161,7 @@ class Game extends React.PureComponent {
           <ControlButton name="start" onClick={this.startTimer} />
           <ControlButton name="reset" onClick={this.reset} />
         </ButtonContainer>
-        {timeLeft <= 0 && <audio id="buzzer" ref={this.myRef} src={buzzer} />}
+        <audio id="buzzer" ref={this.myRef} src={null} />
       </div>
     );
   }
