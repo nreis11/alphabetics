@@ -24,7 +24,7 @@ class Game extends React.PureComponent {
       wordList: [],
       currIdx: 0,
       isGameOn: false,
-      timeLeft: 2
+      timeLeft: 60
     };
   }
 
@@ -95,6 +95,7 @@ class Game extends React.PureComponent {
   startTimer = () => {
     if (!this.timer) {
       const buzzerObj = document.getElementById("buzzer");
+      buzzerObj.src = null;
       buzzerObj.play();
       this.timer = setInterval(this.tick, 1000);
       this.setState({
@@ -120,8 +121,7 @@ class Game extends React.PureComponent {
     this.setState({
       currIdx: 0,
       isGameOn: false,
-      timeLeft: 60,
-      correct: []
+      timeLeft: 60
     });
   };
 
