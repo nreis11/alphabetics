@@ -1,7 +1,7 @@
 import React from "react";
 import "./WordTileContainer.css";
 
-export const WordTileContainer = props => {
+const WordTileContainer = props => {
   return (
     <div id="container-words" className="container">
       <div id="inner-container" className="container">
@@ -12,3 +12,5 @@ export const WordTileContainer = props => {
     </div>
   );
 };
+
+export default React.memo(WordTileContainer);

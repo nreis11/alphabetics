@@ -2,7 +2,7 @@ import React from "react";
 import "./WordTile.css";
 import { object } from "prop-types";
 
-export const WordTile = ({ word }) => {
+const WordTile = ({ word }) => {
   const classes = `word-tile ${word && word.isRight ? "is-right" : ""}`;
   return (
     <li>
@@ -20,3 +20,5 @@ WordTile.propTypes = {
 WordTile.defaultProps = {
   word: { value: "", isRight: false }
 };
+
+export default React.memo(WordTile);

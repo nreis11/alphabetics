@@ -1,7 +1,7 @@
 import React from "react";
 import "./LetterBar.css";
 
-export const LetterBar = ({ wordList, currIdx }) => {
+const LetterBar = ({ wordList, currIdx }) => {
   return (
     <div className="letter-bar-container">
       {wordList.map((word, idx) => {
@@ -18,3 +18,5 @@ export const LetterBar = ({ wordList, currIdx }) => {
     </div>
   );
 };
+
+export default React.memo(LetterBar);

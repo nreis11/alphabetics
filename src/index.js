@@ -1,21 +1,20 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
-import { LetterBar } from "./LetterBar";
-import { WordTileContainer } from "./WordTileContainer";
-import { Timer } from "./Timer";
-import { WordTile } from "./WordTile";
-import { ButtonContainer } from "./ButtonContainer";
+import LetterBar from "./LetterBar";
+import WordTileContainer from "./WordTileContainer";
+import Timer from "./Timer";
+import WordTile from "./WordTile";
+import ButtonContainer from "./ButtonContainer";
+import MainContainer from "./MainContainer";
+import ControlContainer from "./ControlContainer";
+import ControlButton from "./ControlButton";
 import Speech from "./Speech";
 
 import wordBank from "./words.json";
-
 import buzzer from "./sounds/buzzer-1.mp3";
 import applause from "./sounds/applause.mp3";
 import "./index.css";
-import { MainContainer } from "./MainContainer";
-import { ControlContainer } from "./ControlContainer";
-import { ControlButton } from "./ControlButton";
 
 class Game extends React.PureComponent {
   constructor(props) {
@@ -51,19 +50,23 @@ class Game extends React.PureComponent {
 
     if (e.keyCode === 32 || cmd === "next") {
       // Correct
-      const currWord = wordList[currIdx];
-      currWord.isRight = true;
+      const currWord = { ...wordList[currIdx], isRight: true };
       const newWordList = wordList.slice();
       newWordList[currIdx] = currWord;
-      this.setState({
-        wordList: newWordList
-      });
+      this.setState(
+        {
+          wordList: newWordList
+        },
+        // Callback to check updated word list
+        () => {
+          if (this.isWin()) {
+            this.playBuzzer(applause);
+            clearInterval(this.timer);
+            this.timer = null;
+          }
+        }
+      );
       this.nextWord();
-      if (this.isWin()) {
-        this.playBuzzer(applause);
-        clearInterval(this.timer);
-        this.timer = null;
-      }
     } else if (e.keyCode === 18 || cmd === "pass") {
       // Pass
       this.nextWord();

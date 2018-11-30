@@ -22,7 +22,7 @@
 }
 
 ul {
-  width: 75%;
+  width: 90%;
   columns: 2;
   padding: 0;
 }
@@ -37,5 +37,6 @@ li {
   ul {
     columns: 1;
     margin: 0 auto;
+    width: 80%;
   }
 }
