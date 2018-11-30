@@ -1,8 +1,14 @@
 .control-container {
   width: 25%;
-  height: 450px;
+  height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 700px) {
+  .control-container {
+    height: 100vh;
+  }
 }

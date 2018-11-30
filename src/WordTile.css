@@ -1,11 +1,11 @@
 .word-tile {
   position: relative;
   height: 50px;
+  /* width: 200px; */
   text-align: left;
   padding-left: 5px;
-  font: bold 1.2em;
+  font: bold 1.2rem;
   line-height: 50px;
-  width: 200px;
   border: 3px solid rgb(216, 216, 69);
   box-shadow: 2px 2px 2px 1px black;
   background: #fceabb; /* Old browsers */
@@ -21,4 +21,12 @@
 
 .is-right {
   border: 5px solid rgb(56, 192, 56);
+}
+
+@media only screen and (max-width: 700px) {
+  .word-tile {
+    height: 30px;
+    line-height: 30px;
+    font: bold 1rem;
+  }
 }

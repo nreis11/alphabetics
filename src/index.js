@@ -11,6 +11,7 @@ import Speech from "./Speech";
 import wordBank from "./words.json";
 
 import buzzer from "./sounds/buzzer-1.mp3";
+import applause from "./sounds/applause.mp3";
 import "./index.css";
 import { MainContainer } from "./MainContainer";
 import { ControlContainer } from "./ControlContainer";
@@ -37,6 +38,11 @@ class Game extends React.PureComponent {
     window.removeEventListener("keydown", this.handleKeyDown);
   }
 
+  isWin = () => {
+    const { wordList } = this.state;
+    return wordList.every(word => word.isRight === true);
+  };
+
   handleKeyDown = (e, cmd = null) => {
     const { isGameOn, currIdx, wordList } = this.state;
     if (!isGameOn) {
@@ -53,6 +59,11 @@ class Game extends React.PureComponent {
         wordList: newWordList
       });
       this.nextWord();
+      if (this.isWin()) {
+        this.playBuzzer(applause);
+        clearInterval(this.timer);
+        this.timer = null;
+      }
     } else if (e.keyCode === 18 || cmd === "pass") {
       // Pass
       this.nextWord();
@@ -61,7 +72,7 @@ class Game extends React.PureComponent {
 
   generateWordList = () => {
     const { wordVault } = this.state;
-    const randomIdx = Math.floor(Math.random() * 16);
+    const randomIdx = Math.floor(Math.random() * 13);
     const wordList = wordVault
       .slice(randomIdx, randomIdx + 10)
       .map(letterArr => {
@@ -78,9 +89,7 @@ class Game extends React.PureComponent {
   tick = () => {
     const { timeLeft } = this.state;
     if (timeLeft <= 0) {
-      const buzzerObj = document.getElementById("buzzer");
-      buzzerObj.src = buzzer;
-      buzzerObj.play();
+      this.playBuzzer(buzzer);
       clearInterval(this.timer);
       this.setState({
         isGameOn: false
@@ -94,14 +103,19 @@ class Game extends React.PureComponent {
 
   startTimer = () => {
     if (!this.timer) {
-      const buzzerObj = document.getElementById("buzzer");
-      buzzerObj.src = null;
-      buzzerObj.play();
+      // Needed for mobile due to necessary user interaction
+      this.playBuzzer(null);
       this.timer = setInterval(this.tick, 1000);
       this.setState({
         isGameOn: true
       });
     }
+  };
+
+  playBuzzer = sound => {
+    const buzzerObj = document.getElementById("buzzer");
+    buzzerObj.src = sound;
+    buzzerObj.play();
   };
 
   nextWord = () => {
